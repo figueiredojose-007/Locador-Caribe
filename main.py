@@ -1,6 +1,6 @@
 from tkinter import *
 from PIL import Image, ImageTk
-# rgfg
+
 # Back-end ===============================================================================================================================================
 
 # Função de filtro de itens
@@ -59,7 +59,7 @@ def listarItens(lista):                                         # Recebe uma lis
     for i, item in enumerate(listaItens):
         # Caixa de cada item
         frame = Frame(janela, borderwidth=1, highlightbackground="white", highlightthickness=2, background="#3c3d61")
-        frame.place(x=520, y=10 + 110 * i, width=500, height=100)
+        frame.place(x=413, y=10 + 110 * i, width=500, height=100)
 
         # Título do item
         titulo = Label(frame, text=item.titulo, fg="white", bg="#3c3d61", font=("Arial", 18, "bold"))
