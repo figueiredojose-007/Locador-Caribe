@@ -1,6 +1,6 @@
 from tkinter import *
 from PIL import Image, ImageTk
-
+# rgfg
 # Back-end ===============================================================================================================================================
 
 # Função de filtro de itens
