@@ -1,2 +1,2 @@
 # Locador Caribe
- Projeto final 2024
+ Projeto final realizado no último bimestre do ano letivo 2024, segundo ano do curso técnico em informática.
