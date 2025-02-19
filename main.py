@@ -1,22 +1,7 @@
 from tkinter import *
 from PIL import Image, ImageTk
-
 from lib import *
-
-# Classe de item
-class Item:
-    def __init__(self,idNum,titulo,ano,tipo,disponib=True):
-        self._id = idNum
-        self.ano = ano
-        self.titulo = titulo
-        self.tipo = tipo
-        self.disponib = disponib
-        self.estoque = 1
-        self.capa = f"Capas/{self._id}.png"
-
-
-    def getId(self):
-        return self._id
+from Classes.classItem import Item
 
 global listaItens
 listaItens = [
@@ -68,5 +53,5 @@ if itemSelecionado == "":
         wraplength=370, justify="center") 
     displayTextoMenor.pack(pady=5,padx=10,side="bottom") 
 
-listarItens(listaItens)
+listarItens(listaItens, janela,display)
 janela.mainloop()
