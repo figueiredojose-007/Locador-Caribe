@@ -1,6 +1,6 @@
 from tkinter import *
 from PIL import Image, ImageTk
-# rgfg
+
 # Back-end ===============================================================================================================================================
 
 # Função de filtro de itens
@@ -59,7 +59,7 @@ def listarItens(lista):                                         # Recebe uma lis
     for i, item in enumerate(listaItens):
         # Caixa de cada item
         frame = Frame(janela, borderwidth=1, highlightbackground="white", highlightthickness=2, background="#3c3d61")
-        frame.place(x=520, y=10 + 110 * i, width=500, height=100)
+        frame.place(x=413, y=10 + 110 * i, width=500, height=100)
 
         # Título do item
         titulo = Label(frame, text=item.titulo, fg="white", bg="#3c3d61", font=("Arial", 18, "bold"))
@@ -81,7 +81,7 @@ def listarItens(lista):                                         # Recebe uma lis
             corDisp = "red"
         
         # Imagem da bolinha
-        status = PhotoImage(file=f"Imagens/{iconeDisp}")
+        status = PhotoImage(file=f"Arquivos/Imagens/{iconeDisp}")
 
         # Mostrando a imagem
         imagem = Label(frame,image=status,highlightthickness=0,background="#3c3d61")
@@ -108,7 +108,7 @@ class Item:
         self.tipo = tipo
         self.disponib = disponib
         self.estoque = 1
-        self.capa = f"Capas/{self._id}.png"
+        self.capa = f"Arquivos/Capas/{self._id}.png"
 
 
     def getId(self):
@@ -141,7 +141,7 @@ janela.title("Locadora Caribe")
 janela["bg"] = "#1b1b33"
 janela.resizable(False, False)
 janela.attributes("-toolwindow",False)
-janela.iconbitmap("Imagens/logoProjetoIco.ico")
+janela.iconbitmap("Arquivos/Imagens/logoProjetoIco.ico")
 
 itemSelecionado = ""
 
@@ -154,7 +154,7 @@ if itemSelecionado == "":
                          foreground="white")
     displayTexto.pack(pady=20, anchor="center")
 
-    logo = PhotoImage(file="Imagens/logoProjeto.png")
+    logo = PhotoImage(file="Arquivos/Imagens/logoProjeto.png")
     displayLogo = Label(display,image=logo,background="#3c3d61")
     displayLogo.pack(anchor="center")
     displayLogo.image = logo
