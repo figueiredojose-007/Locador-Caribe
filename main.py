@@ -81,7 +81,7 @@ def listarItens(lista):                                         # Recebe uma lis
             corDisp = "red"
         
         # Imagem da bolinha
-        status = PhotoImage(file=f"Arquivos/Imagens/{iconeDisp}")
+        status = PhotoImage(file=f"Imagens/{iconeDisp}")
 
         # Mostrando a imagem
         imagem = Label(frame,image=status,highlightthickness=0,background="#3c3d61")
@@ -108,7 +108,7 @@ class Item:
         self.tipo = tipo
         self.disponib = disponib
         self.estoque = 1
-        self.capa = f"Arquivos/Capas/{self._id}.png"
+        self.capa = f"Capas/{self._id}.png"
 
 
     def getId(self):
@@ -141,7 +141,7 @@ janela.title("Locadora Caribe")
 janela["bg"] = "#1b1b33"
 janela.resizable(False, False)
 janela.attributes("-toolwindow",False)
-janela.iconbitmap("Arquivos/Imagens/logoProjetoIco.ico")
+janela.iconbitmap("Imagens/logoProjetoIco.ico")
 
 itemSelecionado = ""
 
@@ -154,7 +154,7 @@ if itemSelecionado == "":
                          foreground="white")
     displayTexto.pack(pady=20, anchor="center")
 
-    logo = PhotoImage(file="Arquivos/Imagens/logoProjeto.png")
+    logo = PhotoImage(file="Imagens/logoProjeto.png")
     displayLogo = Label(display,image=logo,background="#3c3d61")
     displayLogo.pack(anchor="center")
     displayLogo.image = logo
