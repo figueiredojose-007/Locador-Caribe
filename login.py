@@ -1,4 +1,4 @@
-
+from PIL import Image, ImageTk
 from tkinter import *
 
 #colocando modo escuro na janela:
@@ -24,14 +24,15 @@ def validar_login():
 #criando janela:
 janela = Tk()
 janela.title('Locadora Caribe')
-janela.geometry('740x460')
+janela.geometry('740x360')
 janela.iconbitmap('Imagens/logoProjetoIco.ico')
 janela.configure(background='#1b1b33')
 janela.attributes('-toolwindow', False)
 janela.resizable(False, False)
 
+
 display = Frame(janela, borderwidth=1, highlightbackground="white", highlightthickness=2, background="#3c3d61")
-display.place(width=720,height=440, x=10, y=10)
+display.place(width=720,height=340, x=10, y=10)
 
 
 
@@ -51,8 +52,39 @@ campo_senha.pack(pady=5)
 entradasenha = Entry(display, show='*')
 entradasenha.pack(pady=5)
 
-botao = Button(display, text='Entrar', command=validar_login)
-botao.pack(pady=5)
+
+displaybotoes = Frame(janela,background="#3c3d61")
+displaybotoes.place(width=140,height=30, x=299, y=260)
+
+
+
+botao = Button(displaybotoes, text="Logar", borderwidth=1, highlightbackground="white", highlightthickness=2, 
+                  background="#1b1b33", foreground="white", font=("Arial",10,"bold"))
+botao.pack(pady=5, padx=5, side=LEFT)
+
+botao2 = Button(displaybotoes, text="Cadastrar", borderwidth=1, highlightbackground="white", highlightthickness=2, 
+                  background="#1b1b33", foreground="white", font=("Arial",10,"bold"))
+botao2.pack(pady=5, padx=5, side=RIGHT)
+
+
+
+
+
+
+
+
+arvore = PhotoImage(file="Imagens/arvoree.png")
+displayLogo = Label(display,image=arvore,background="#3c3d61")
+displayLogo.place(x=480, y=100)  # Ajuste os valores conforme necessário
+
+arvore2 = PhotoImage(file="Imagens/arvoree.png")
+displayLogo = Label(display,image=arvore2,background="#3c3d61")
+displayLogo.place(x=35, y=100)  # Ajuste os valores conforme necessário
+
+
+
+
+
 
 
 
