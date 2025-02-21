@@ -2,24 +2,25 @@ from tkinter import *
 from PIL import Image, ImageTk
 from lib import *
 from Classes.classItem import Item
+from Classes.classJogo import Jogo
 
 global listaItens
 listaItens = [
-    Item(100, "Forza Horizon 5", "2021", "Jogo"),
-    Item(101, "Esquadrão Suicida", "2016", "Filme"),
-    Item(102, "The Witcher 3", "2015", "Jogo"),
-    Item(103, "Interstellar", "2014", "Filme"),
-    Item(104, "Red Dead Redemption 2", "2018", "Jogo"),
-    Item(105, "Cyberpunk 2077", "2020", "Jogo"),
-    Item(106, "Oppenheimer", "2023", "Filme"),
-    Item(107, "The Last of Us Part II", "2020", "Jogo"),
-    Item(108, "Duna", "2021", "Filme"),
-    Item(109, "God of War Ragnarok", "2022", "Jogo"),
-    Item(110, "Avatar: O Caminho da Água", "2022", "Filme"),
-    Item(111, "Horizon Forbidden West", "2022", "Jogo"),
-    Item(112, "John Wick 4", "2023", "Filme"),
-    Item(113, "Spider-Man 2", "2023", "Jogo"),
-    Item(114, "Guardiões da Galáxia Vol. 3", "2023", "Filme")
+    Jogo("Forza Horizon 5", "2021", "Jogo", "Xbox/PC", "Playground Games", 100),
+    Item("Esquadrão Suicida", "2016", "Filme", "Jogo", 101),
+    Jogo("The Witcher 3", "2015", "Jogo", "Multiplataforma", "CD Projekt Red", 102),
+    Item("Interstellar", "2014", "Filme", "Jogo", 103),
+    Jogo("Red Dead Redemption 2", "2018", "Jogo", "Multiplataforma", "Rockstar Games", 104),
+    Jogo("Cyberpunk 2077", "2020", "Jogo", "Multiplataforma", "CD Projekt Red", 105),
+    Item("Oppenheimer", "2023", "Filme", "Jogo", 106),
+    Jogo("The Last of Us Part II", "2020", "Jogo", "PlayStation", "Naughty Dog", 107),
+    Item("Duna", "2021", "Filme", "Jogo", 108),
+    Jogo("God of War Ragnarok", "2022", "Jogo", "PlayStation", "Santa Monica Studio", 109),
+    Item("Avatar: O Caminho da Água", "2022", "Filme", "Jogo", 110),
+    Jogo("Horizon Forbidden West", "2022", "Jogo", "PlayStation", "Guerrilla Games", 111),
+    Item("John Wick 4", "2023", "Filme", "Jogo", 112),
+    Jogo("Spider-Man 2", "2023", "Jogo", "PlayStation", "Insomniac Games", 113),
+    Item("Guardiões da Galáxia Vol. 3", "2023", "Filme", "Jogo", 114)
 ]
 
 
@@ -30,7 +31,7 @@ janela.title("Locadora Caribe")
 janela["bg"] = "#1b1b33"
 janela.resizable(False, False)
 janela.attributes("-toolwindow",False)
-janela.iconbitmap("Imagens/logoProjetoIco.ico")
+janela.iconbitmap("Arquivos/Imagens/logoProjetoIco.ico")
 
 itemSelecionado = ""
 
@@ -43,7 +44,7 @@ if itemSelecionado == "":
                          foreground="white")
     displayTexto.pack(pady=20, anchor="center")
 
-    logo = PhotoImage(file="Imagens/logoProjeto.png")
+    logo = PhotoImage(file="Arquivos/Imagens/logoProjeto.png")
     displayLogo = Label(display,image=logo,background="#3c3d61")
     displayLogo.pack(anchor="center")
 
@@ -51,7 +52,7 @@ if itemSelecionado == "":
         text="A Locadora Caribe é um projeto desenvolvido por Caio Enzo Bessa de Oliveira e José Fernandes Figueirêdo Filho, sob a orientação do professor Ciro Daniel Gurgel de Moura, no Instituto Federal do Rio Grande do Norte (IFRN). Criado para simular a experiência de uma locadora moderna, permitindo o aluguel de jogos e filmes por meio de uma interface intuitiva e prática.\n\nSelecione um item para ver suas informações.",
         font=("Arial", 12), background="#3c3d61", foreground="white", 
         wraplength=370, justify="center") 
-    displayTextoMenor.pack(pady=5,padx=10,side="bottom") 
+    displayTextoMenor.pack(pady=5,padx=10,side="bottom",) 
 
 listarItens(listaItens, janela,display)
 janela.mainloop()

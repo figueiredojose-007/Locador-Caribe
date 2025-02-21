@@ -73,11 +73,11 @@ botao2.pack(pady=5, padx=5, side=RIGHT)
 
 
 
-arvore = PhotoImage(file="Imagens/arvoree.png")
+arvore = PhotoImage(file="Arquivos/Imagens/arvoree.png")
 displayLogo = Label(display,image=arvore,background="#3c3d61")
 displayLogo.place(x=480, y=100)  # Ajuste os valores conforme necessário
 
-arvore2 = PhotoImage(file="Imagens/arvoree.png")
+arvore2 = PhotoImage(file="Arquivos/Imagens/arvoree.png")
 displayLogo = Label(display,image=arvore2,background="#3c3d61")
 displayLogo.place(x=35, y=100)  # Ajuste os valores conforme necessário
 

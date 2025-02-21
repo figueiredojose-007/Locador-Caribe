@@ -2,14 +2,14 @@ from tkinter import *
 from PIL import Image, ImageTk
 
 class Item:
-    def __init__(self,idNum,titulo,ano,tipo,disponib=True):
+    def __init__(self,titulo,ano,tipo,disponib=True,idNum=0):
         self._id = idNum
         self.ano = ano
         self.titulo = titulo
         self.tipo = tipo
         self.disponib = disponib
         self.estoque = 1
-        self.capa = f"Capas/{self._id}.png"
+        self.capa = f"Arquivos/Capas/{self._id}.png"
 
 
     def getId(self):
@@ -24,15 +24,14 @@ class Item:
         for widget in display.winfo_children():
             widget.destroy()
 
-        # Exibir título do item
-        tituloItem = Label(display, text="Informações", font=("Arial", 20, "bold"), 
+        # Exibir o nome informação
+        info = Label(display, text="Informações", font=("Arial", 20, "bold"), 
                         background="#3c3d61", foreground="white")
-        tituloItem.pack(pady=10)
+        info.pack(pady=10)
 
-        # Converter para PhotoImage
         img = Image.open(item.capa)
         img = img.resize((140, 200), Image.LANCZOS) 
         capa = ImageTk.PhotoImage(img)
         capaLabel = Label(display, image=capa)
-        capaLabel.image = capa
-        capaLabel.pack(anchor="nw",padx=10)
+        capaLabel.image = capa  
+        capaLabel.pack(side="left", padx=10,anchor="n")  

@@ -1,50 +1,46 @@
 from tkinter import *
 from PIL import Image, ImageTk
 
-# Função de filtro de itens em uma lista
-def filtrarItens(lista, tipoFiltro, filtro):                    # Recebe uma lista de itens, um atributo para filtrar e uma referência de filtro
-    listaFinal = []                                             # Criação da lista final que é retornada no final
-    if tipoFiltro == "titulo":                                  # Filtragem por título
-        for item in lista:
-            if item.titulo == filtro:
-                listaFinal.append(item)
+def listarItens(lista, janela, display):
+    # Frame principal onde a lista será exibida
+    frameLista = Frame(janela, width=500, height=197, background="#3c3d61")
+    frameLista.place(x=415, y=10)
 
-    elif tipoFiltro == "tipo":                                  # Filtragem por tipo
-        for item in lista:
-            if item.tipo == filtro:
-                listaFinal.append(item)
+    # Canvas para exibir os itens
+    listaShow = Canvas(frameLista, background="#3c3d61",width=500,height=536)
+    listaShow.pack(side=LEFT, fill=BOTH, expand=True)
 
-    elif tipoFiltro == "ano":                                   # Filtragem por ano
-        for item in lista:
-            if item.ano == filtro:
-                listaFinal.append(item)
+    # Barra de rolagem
+    scrollbar = Scrollbar(janela, orient="vertical", command=listaShow.yview)
+    scrollbar.pack(side=RIGHT, fill=Y)
+    listaShow.configure(yscrollcommand=scrollbar.set)
 
-    elif tipoFiltro == "disponib":                              # Filtragem por disponibilidade
-        for item in lista:
-            if item.disponib == filtro:
-                listaFinal.append(item)
+    # Frame interno que conterá os itens
+    frameItens = Frame(listaShow, background="#3c3d61")
+    listaShow.create_window((0, 0), window=frameItens, anchor="nw", width=500)
 
-    return listaFinal
+    # Atualiza o tamanho do canvas conforme os itens são adicionados
+    def ajustarScroll(event):
+        listaShow.configure(scrollregion=listaShow.bbox("all"))
 
-# Função de selecionar um item para o painel principal
+    frameItens.bind("<Configure>", ajustarScroll)
 
-# Função de listar os itens na interface, sempre ao lado direito da tela
-def listarItens(lista, janela, display):                         
     for i, item in enumerate(lista):
-        # Caixa de cada item
-        frame = Frame(janela, borderwidth=1, highlightbackground="white", highlightthickness=2, background="#3c3d61")
-        frame.place(x=413, y=10 + 110 * i, width=500, height=100)
+        # Criando o frame de cada item
+        frame = Frame(frameItens, borderwidth=1, highlightbackground="white", 
+                      highlightthickness=2, background="#3c3d61")
+        frame.pack(fill=X, padx=10, pady=10)
 
         # Título do item
         titulo = Label(frame, text=item.titulo, fg="white", bg="#3c3d61", font=("Arial", 18, "bold"))
-        titulo.pack(padx=5,pady=1,anchor="w")
-        
+        titulo.pack(padx=5, pady=1, anchor="w")
+
         # Ano e tipo do item
         textoSubtitulo = f"{item.tipo} - {item.ano}"
-        subtitulo = Label(frame,text=textoSubtitulo,fg="white", bg="#3c3d61", font=("Arial", 12))
-        subtitulo.pack(padx=5,pady=2,anchor="w")
+        subtitulo = Label(frame, text=textoSubtitulo, fg="white", bg="#3c3d61", font=("Arial", 12))
+        subtitulo.pack(padx=5, pady=2, anchor="w")
 
-        # Verificando e configurando a disponibilidade do item
+        # Verificando a disponibilidade
         if item.disponib:
             iconeDisp = "disponibilidadeTrue.png"
             textDisp = "Disponível"
@@ -53,22 +49,21 @@ def listarItens(lista, janela, display):
             iconeDisp = "disponibilidadeFalse.png"
             textDisp = "Indisponível"
             corDisp = "red"
-        
-        # Imagem da bolinha
-        status = PhotoImage(file=f"Imagens/{iconeDisp}")
 
-        # Mostrando a imagem
-        imagem = Label(frame,image=status,highlightthickness=0,background="#3c3d61")
+        # Imagem de disponibilidade
+        status = PhotoImage(file=f"Arquivos/Imagens/{iconeDisp}")
+        imagem = Label(frame, image=status, highlightthickness=0, background="#3c3d61")
         imagem.image = status
-        imagem.pack(padx=3,pady=1,anchor="w",side="left")
+        imagem.pack(padx=3, pady=1, side="left")
 
-        # Mostrando o texto de disponibilidade
-        textoimagem = Label(frame,text=textDisp,fg=corDisp,bg="#3c3d61", font=("Arial",10,"bold"))
-        textoimagem.pack(padx=3,pady=1,side="left")
+        # Texto de disponibilidade
+        textoimagem = Label(frame, text=textDisp, fg=corDisp, bg="#3c3d61", font=("Arial", 10, "bold"))
+        textoimagem.pack(padx=3, pady=1, side="left")
 
-        # Mostrando o botão de ver o item selecionado
-        botaoVer = Button(frame, text="Ver item", borderwidth=1, highlightbackground="white", highlightthickness=2, 
-                  background="#1b1b33", foreground="white", font=("Arial",10,"bold"), 
-                  command=lambda item=item: item.infoItem(display))  
+        # Botão para ver o item selecionado
+        botaoVer = Button(frame, text="Ver item", borderwidth=1, highlightbackground="white",
+                          highlightthickness=2, background="#1b1b33", foreground="white",
+                          font=("Arial", 10, "bold"), command=lambda item=item: item.infoItem(display))
+        botaoVer.pack(padx=3, pady=3, anchor="e")
 
-        botaoVer.pack(padx=3,pady=3,anchor="e")
+    listaShow.update_idletasks()
