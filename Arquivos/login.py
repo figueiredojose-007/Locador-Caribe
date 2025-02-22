@@ -4,6 +4,7 @@ from tkinter import messagebox
 from lib import *
 import os
 from Classes.classCliente import Cliente
+import subprocess
 
 # Cadastrando um usuário
 def cadastrarUsuario(usuario, senha):
@@ -33,7 +34,7 @@ def validarLogin():
 
     if result:
         messagebox.showinfo("Locadora Caribe", "Login efetuado com sucesso.")
-        janela.after(2000, lambda: [janela.destroy(), exec(open('Arquivos/main.py').read())])
+        janela.after(500, lambda: [janela.destroy(), subprocess.run(["python3","Arquivos/catalogo.py"])])
     else:
         messagebox.showerror("Locadora Caribe", "Login ou senha inválidos.")
 

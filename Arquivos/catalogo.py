@@ -6,7 +6,7 @@ from Classes.classJogo import Jogo
 
 # Lendo o arquivo que contém os itens do catálogo
 global listaItens
-listaItens = lerArquivo("itensCatalogo")
+listaItens = lerArquivo("Arquivos/Informações/itensCatalogo")
 
 # Interface do projeto
 janela = Tk()
@@ -39,5 +39,5 @@ if itemSelecionado == "":
         wraplength=370, justify="center") 
     displayTextoMenor.pack(pady=5,padx=10,side="bottom",) 
 
-listarItens(listaItens, janela,display,itemSelecionado)
+janela.after(500, listarItens(listaItens, janela,display,itemSelecionado))
 janela.mainloop()
