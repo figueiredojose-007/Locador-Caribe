@@ -57,3 +57,6 @@ class Item:
                         background="#3c3d61", foreground="white", justify="left")
         disponibilidade.pack(pady=5, anchor="w")
         
+        sinopse = Label(display, text=f"Descrição: {item.descricao}", font=("Arial", 12),
+                        background="#3c3d61", foreground="white", wraplength=230, justify="left")
+        sinopse.place(x=10,y=270)
