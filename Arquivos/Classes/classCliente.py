@@ -1,8 +1,10 @@
-class Cliente:
-    def __init__(self, nome, idade,sexo):
-        self.nome = nome
-        self.idade = idade
-        self.sexo = sexo
+from Classes.classUsuario import Usuário
+from lib import *
+
+class Cliente(Usuário):
+    def __init__(self, username, senha):
+        super().__init__(username,senha)
+        self._id = 100 + len(lerArquivo("itensUsuarios"))
         self.listaAlocacoes = []
     
     def alocar(self, alocacao):

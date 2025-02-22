@@ -4,27 +4,11 @@ from lib import *
 from Classes.classItem import Item
 from Classes.classJogo import Jogo
 
+# Lendo o arquivo que contém os itens do catálogo
 global listaItens
-listaItens = [
-    Jogo("Forza Horizon 5", "2021", "Jogo", "Xbox/PC", "Playground Games", 100),
-    Item("Esquadrão Suicida", "2016", "Filme", "Jogo", 101),
-    Jogo("The Witcher 3", "2015", "Jogo", "Multiplataforma", "CD Projekt Red", 102),
-    Item("Interstellar", "2014", "Filme", "Jogo", 103),
-    Jogo("Red Dead Redemption 2", "2018", "Jogo", "Multiplataforma", "Rockstar Games", 104),
-    Jogo("Cyberpunk 2077", "2020", "Jogo", "Multiplataforma", "CD Projekt Red", 105),
-    Item("Oppenheimer", "2023", "Filme", "Jogo", 106),
-    Jogo("The Last of Us Part II", "2020", "Jogo", "PlayStation", "Naughty Dog", 107),
-    Item("Duna", "2021", "Filme", "Jogo", 108),
-    Jogo("God of War Ragnarok", "2022", "Jogo", "PlayStation", "Santa Monica Studio", 109),
-    Item("Avatar: O Caminho da Água", "2022", "Filme", "Jogo", 110),
-    Jogo("Horizon Forbidden West", "2022", "Jogo", "PlayStation", "Guerrilla Games", 111),
-    Item("John Wick 4", "2023", "Filme", "Jogo", 112),
-    Jogo("Spider-Man 2", "2023", "Jogo", "PlayStation", "Insomniac Games", 113),
-    Item("Guardiões da Galáxia Vol. 3", "2023", "Filme", "Jogo", 114)
-]
+listaItens = lerArquivo("itensCatalogo")
 
-
-# Front-end ===============================================================================================================================================
+# Interface do projeto
 janela = Tk()
 janela.geometry("940x560")
 janela.title("Locadora Caribe")
@@ -33,6 +17,7 @@ janela.resizable(False, False)
 janela.attributes("-toolwindow",False)
 janela.iconbitmap("Arquivos/Imagens/logoProjetoIco.ico")
 
+global itemSelecionado
 itemSelecionado = ""
 
 display = Frame(janela, borderwidth=1, highlightbackground="white", highlightthickness=2, background="#3c3d61")
@@ -54,5 +39,5 @@ if itemSelecionado == "":
         wraplength=370, justify="center") 
     displayTextoMenor.pack(pady=5,padx=10,side="bottom",) 
 
-listarItens(listaItens, janela,display)
+listarItens(listaItens, janela,display,itemSelecionado)
 janela.mainloop()

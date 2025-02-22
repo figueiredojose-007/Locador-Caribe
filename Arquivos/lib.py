@@ -1,7 +1,26 @@
 from tkinter import *
 from PIL import Image, ImageTk
+import pickle
+import os
 
-def listarItens(lista, janela, display):
+# Escrever uma lista de coisas em um arquivo (itens do catálogo ou usuários)
+def adicionarAoArquivo(lista, nomeArquivo):
+    arquivo = open(f"Arquivos/Informações/{nomeArquivo}.txt","wb")
+    pickle.dump(lista,arquivo)
+    arquivo.close()
+
+# Ler um arquivo e retornar em uma lista
+def lerArquivo(nomeArquivo):
+    if os.path.exists(f"Arquivos/Informações/{nomeArquivo}.txt") == False:
+        return []
+    else:
+        arquivo = open(f"Arquivos/Informações/{nomeArquivo}.txt","rb")
+        listaFinal = pickle.load(arquivo)
+        arquivo.close()
+        return listaFinal
+
+# Listar todos os itens do catálogo em um scroller na parte direita da tela
+def listarItens(lista, janela, display, itemSelecionado):
     # Frame principal onde a lista será exibida
     frameLista = Frame(janela, width=500, height=197, background="#3c3d61")
     frameLista.place(x=415, y=10)
@@ -63,7 +82,7 @@ def listarItens(lista, janela, display):
         # Botão para ver o item selecionado
         botaoVer = Button(frame, text="Ver item", borderwidth=1, highlightbackground="white",
                           highlightthickness=2, background="#1b1b33", foreground="white",
-                          font=("Arial", 10, "bold"), command=lambda item=item: item.infoItem(display))
+                          font=("Arial", 10, "bold"), command=lambda item=item: item.infoItem(display,itemSelecionado))
         botaoVer.pack(padx=3, pady=3, anchor="e")
 
     listaShow.update_idletasks()
