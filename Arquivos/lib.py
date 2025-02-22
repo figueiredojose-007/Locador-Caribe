@@ -11,10 +11,11 @@ def adicionarAoArquivo(lista, nomeArquivo):
 
 # Ler um arquivo e retornar em uma lista
 def lerArquivo(nomeArquivo):
-    if os.path.exists(f"Arquivos/Informações/{nomeArquivo}.txt") == False:
+    if os.path.exists(f"{nomeArquivo}.txt") == False:
+        print("Nada foi encontrado.")
         return []
     else:
-        arquivo = open(f"Arquivos/Informações/{nomeArquivo}.txt","rb")
+        arquivo = open(f"{nomeArquivo}.txt","rb")
         listaFinal = pickle.load(arquivo)
         arquivo.close()
         return listaFinal
