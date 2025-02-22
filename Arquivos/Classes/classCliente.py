@@ -4,7 +4,7 @@ from lib import *
 class Cliente(Usuário):
     def __init__(self, username, senha):
         super().__init__(username,senha)
-        self._id = 100 + len(lerArquivo("itensUsuarios"))
+        self._id = 100 + len(lerArquivo("Arquivos/Informações/itensUsuarios"))
         self.listaAlocacoes = []
     
     def alocar(self, alocacao):

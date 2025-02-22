@@ -4,23 +4,15 @@ from tkinter import messagebox
 from lib import *
 import os
 from Classes.classCliente import Cliente
-import time
 
 # Cadastrando um usuário
 def cadastrarUsuario(usuario, senha):
     if not usuario or not senha:
         messagebox.showwarning("Locadora Caribe", "Usuário e senha não podem estar vazios.")
         return
-
-    if not os.path.exists("itensUsuarios.txt"):
-        listaUsuarios = []
-    else:
-        listaUsuarios = lerArquivo("itensUsuarios.txt")
-        if not listaUsuarios:
-            listaUsuarios = [] 
-
+    listaUsuarios = lerArquivo("itensUsuarios")
     listaUsuarios.append(Cliente(usuario.strip(), senha.strip()))
-    adicionarAoArquivo(listaUsuarios, "itensUsuarios.txt")
+    adicionarAoArquivo(listaUsuarios, "itensUsuarios")
     messagebox.showinfo("Locadora Caribe", "Usuário cadastrado com sucesso.")
 
 # Validando o login do usuário
@@ -28,10 +20,10 @@ def validarLogin():
     usuario = entradausuario.get().strip()
     senha = entradasenha.get().strip()
 
-    if not os.path.exists("Informações/itensUsuarios.txt"):
-        messagebox.showinfo("Locadora Caribe", "Login ou senha inválidos.")
+    if not os.path.exists("Arquivos/Informações/itensUsuarios.txt"):
+        messagebox.showerror("Locadora Caribe", "Erro ao encontrar o arquivo.")
         return
-    listaUsuarios = lerArquivo("itensUsuarios")
+    listaUsuarios = lerArquivo("Arquivos/Informações/itensUsuarios")
 
     result = False
     for item in listaUsuarios:
@@ -43,7 +35,7 @@ def validarLogin():
         messagebox.showinfo("Locadora Caribe", "Login efetuado com sucesso.")
         janela.after(2000, lambda: [janela.destroy(), exec(open('Arquivos/main.py').read())])
     else:
-        messagebox.showinfo("Locadora Caribe", "Login ou senha inválidos.")
+        messagebox.showerror("Locadora Caribe", "Login ou senha inválidos.")
 
 # Criando janela:
 janela = Tk()
