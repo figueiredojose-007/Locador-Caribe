@@ -34,6 +34,7 @@ def validarLogin():
 
     if result:
         messagebox.showinfo("Locadora Caribe", "Login efetuado com sucesso.")
+        adicionarAoArquivo([item],"usuarioLogado")
         janela.after(500, lambda: [janela.destroy(), subprocess.run(["python3","Arquivos/catalogo.py"])])
     else:
         messagebox.showerror("Locadora Caribe", "Login ou senha inválidos.")

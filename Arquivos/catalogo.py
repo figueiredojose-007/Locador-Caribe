@@ -4,6 +4,8 @@ from lib import *
 from Classes.classItem import Item
 from Classes.classJogo import Jogo
 
+usuarioLogado = lerArquivo("Arquivos/Informações/usuarioLogado")[0]
+
 # Lendo o arquivo que contém os itens do catálogo
 global listaItens
 listaItens = lerArquivo("Arquivos/Informações/itensCatalogo")
@@ -11,7 +13,7 @@ listaItens = lerArquivo("Arquivos/Informações/itensCatalogo")
 # Interface do projeto
 janela = Tk()
 janela.geometry("940x560")
-janela.title("Locadora Caribe")
+janela.title(f"Locadora Caribe - {usuarioLogado.username}")
 janela["bg"] = "#1b1b33"
 janela.resizable(False, False)
 janela.attributes("-toolwindow",False)
