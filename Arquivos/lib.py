@@ -21,7 +21,7 @@ def lerArquivo(nomeArquivo):
         return listaFinal
 
 # Listar todos os itens do catálogo em um scroller na parte direita da tela
-def listarItens(lista, janela, display, itemSelecionado):
+def listarItens(lista, janela, display, itemSelecionado, adminPerms=False):
     # Frame principal onde a lista será exibida
     frameLista = Frame(janela, width=500, height=197, background="#3c3d61")
     frameLista.place(x=415, y=50)

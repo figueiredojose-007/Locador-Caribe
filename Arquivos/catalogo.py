@@ -6,7 +6,10 @@ from Classes.classJogo import Jogo
 
 
 usuarioLogado = lerArquivo("Arquivos/Informações/usuarioLogado")[0]
-
+if type(usuarioLogado) == "<class 'Classes.classCliente.Cliente'>":
+    adminPerms = True
+else:
+    adminPerms = False
 # Lendo o arquivo que contém os itens do catálogo
 global listaItens
 
@@ -92,5 +95,5 @@ if itemSelecionado == "":
         wraplength=370, justify="center") 
     displayTextoMenor.pack(pady=5,padx=10,side="bottom",) 
 
-janela.after(500, listarItens(listaItens, janela,display,itemSelecionado))
+janela.after(500, listarItens(listaItens, janela,display,itemSelecionado, adminPerms))
 janela.mainloop()
