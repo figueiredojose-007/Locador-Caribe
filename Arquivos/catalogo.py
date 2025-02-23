@@ -36,7 +36,7 @@ display.place(x=10,y=50,width=395,height=540)
 usuarioFrame = Frame(janela,background="#1b1b33",width=500,height=200)
 usuarioFrame.place(x=10,y=3)
 usuarioImagem = PhotoImage(file=pfp)
-usuarioImagemLabel = Button(usuarioFrame,image=usuarioImagem)
+usuarioImagemLabel = Button(usuarioFrame,image=usuarioImagem,command=lambda: [janela.destroy(), subprocess.run(["python3","Arquivos/perfil.py"])])
 usuarioImagemLabel.image = usuarioImagem
 usuarioImagemLabel.pack(side=LEFT)
 usuarioNome = Label(usuarioFrame,text=usuarioLogado.username,font=("Arial",14,"bold"),foreground="white",background="#1b1b33")

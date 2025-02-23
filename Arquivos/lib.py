@@ -2,6 +2,7 @@ from tkinter import *
 from PIL import Image, ImageTk
 import pickle
 import os
+import subprocess
 
 # Escrever uma lista de coisas em um arquivo (itens do catálogo ou usuários)
 def adicionarAoArquivo(lista, nomeArquivo):
@@ -51,6 +52,13 @@ def listarItens(lista, janela, display, itemSelecionado, adminPerms=False):
                       highlightthickness=2, background="#3c3d61")
         frame.pack(fill=X, padx=10, pady=10)
 
+        # Limitando a quantidade mínima de amostras e configurando a indisponibilidade
+        if item.estoque < 0:
+            item.estoque = 0
+        
+        if item.estoque == 0:
+            item.disponib = False
+
         # Título do item
         titulo = Label(frame, text=item.titulo, fg="white", bg="#3c3d61", font=("Arial", 18, "bold"))
         titulo.pack(padx=5, pady=1, anchor="w")
@@ -90,4 +98,5 @@ def listarItens(lista, janela, display, itemSelecionado, adminPerms=False):
 
 # Ver perfil
 def verPerfil(janela):
-    janela = 
+    janela.after(500, lambda: [janela.destroy(), subprocess.run(["python3","Arquivos/perfil.py"])])
+    
