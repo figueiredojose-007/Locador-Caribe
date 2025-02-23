@@ -3,16 +3,19 @@ from PIL import Image, ImageTk
 from lib import *
 from Classes.classFilme import Filme
 from Classes.classJogo import Jogo
+from Classes.classAdmin import Admin
 import subprocess
 
 # Verificando se o usuário é um admininstrador
 usuarioLogado = lerArquivo("Arquivos/Informações/usuarioLogado")[0]
-if type(usuarioLogado) == "<class 'Classes.classAdmin.Admin'>":
+if type(usuarioLogado) != "<class 'Classes.classAdmin.Admin'>":
     adminPerms = True
     pfp = "Arquivos/Imagens/iconAdmin.png"
+    usuarioTipo = "Admin"
 else:
     adminPerms = False
     pfp = "Arquivos/Imagens/iconCliente.png"
+    usuarioTipo = "Cliente"
 
 # Lendo o arquivo que contém os itens do catálogo
 global listaItens
@@ -57,6 +60,7 @@ if itemSelecionado == "":
         font=("Arial", 12), background="#3c3d61", foreground="white", 
         wraplength=370, justify="center") 
     displayTextoMenor.pack(pady=5,padx=10,side="bottom",) 
+
 
 janela.after(500, listarItens(listaItens, janela,display,itemSelecionado, adminPerms))
 janela.mainloop()

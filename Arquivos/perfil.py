@@ -15,10 +15,11 @@ janela.iconbitmap("Arquivos/Imagens/logoProjetoIco.ico")
 framePrincipal = Frame(janela, borderwidth=1, highlightbackground="white", highlightthickness=2, background="#3c3d61")
 framePrincipal.place(x=10,y=10,width=460,height=200)
 
-if type(usuarioLogado) == "<class 'Classes.classAdmin.Admin'>":
+usuarioLogado = lerArquivo("Arquivos/Informações/usuarioLogado")[0]
+if type(usuarioLogado) != "<class 'Classes.classAdmin.Admin'>":
     adminPerms = True
     pfp = "Arquivos/Imagens/iconAdminGrande.png"
-    usuarioTipo = "Admininstrador"
+    usuarioTipo = "Admin"
 else:
     adminPerms = False
     pfp = "Arquivos/Imagens/iconClienteGrande.png"
@@ -33,15 +34,16 @@ nomeUsuario.place(x=120,y=10)
 tipoUsuario = Label(framePrincipal,text=usuarioTipo,font=("Arial", 14),background="#3c3d61", foreground="white")
 tipoUsuario.place(x=120,y=50)
 
-listaLocacoes = usuarioLogado.listaAlocacoes
-listaFinal = "Itens alocados:\n"
-for item in listaLocacoes:
-    listaFinal = listaFinal + f"{listaLocacoes.index[item.titulo]}, "
+if adminPerms == False:
+    listaLocacoes = usuarioLogado.listaAlocacoes
+    listaFinal = "Itens alocados:\n"
+    for item in listaLocacoes:
+        listaFinal = listaFinal + f"{listaLocacoes.index[item.titulo]}, "
 
-listaFinal = "Itens alocados:\nHello Kitty Teatrinhos, Momo Shooting"
+    listaFinal = "Itens alocados:\nHello Kitty Teatrinhos, Momo Shooting"
 
-listaUsuario = Label(framePrincipal,text=listaFinal,font=("Arial", 14),background="#3c3d61", foreground="white",wraplength=280,justify="left")
-listaUsuario.place(x=120,y=75)
+    listaUsuario = Label(framePrincipal,text=listaFinal,font=("Arial", 14),background="#3c3d61", foreground="white",wraplength=280,justify="left")
+    listaUsuario.place(x=120,y=75)
 
 botaoSair = Button(framePrincipal, text="Logoff", borderwidth=1, highlightbackground="white",
                           highlightthickness=2, background="#1b1b33", foreground="white", width=12,

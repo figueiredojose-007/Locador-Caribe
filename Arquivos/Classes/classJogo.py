@@ -12,3 +12,11 @@ class Jogo(Item):
         self.capa = f"Arquivos/Capas/{self._id}.png"
         self.descricao = descricao
         
+        if self.disponib:
+            self.iconeDisp = "disponibilidadeTrue.png"
+            self.textDisp = "Disponível"
+            self.corDisp = "lime"
+        else:
+            self.iconeDisp = "disponibilidadeFalse.png"
+            self.textDisp = "Indisponível"
+            self.corDisp = "red"
