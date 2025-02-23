@@ -28,7 +28,7 @@ def validarLogin():
 
     result = False
     for item in listaUsuarios:
-        if item.username.strip() == usuario and item.senha.strip() == senha:
+        if item.username.strip() == usuario and item.getSenha().strip() == senha:
             result = True
             break
 
