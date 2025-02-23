@@ -21,16 +21,6 @@ def lerArquivo(nomeArquivo):
         arquivo.close()
         return listaFinal
 
-usuarioLogado = lerArquivo("Arquivos/Informações/usuarioLogado")[0]
-if type(usuarioLogado) != "<class 'Classes.classAdmin.Admin'>":
-    adminPerms = True
-    pfp = "Arquivos/Imagens/iconAdmin.png"
-    usuarioTipo = "Admin"
-else:
-    adminPerms = False
-    pfp = "Arquivos/Imagens/iconCliente.png"
-    usuarioTipo = "Cliente"
-
 # Listar todos os itens do catálogo em um scroller na parte direita da tela
 def listarItens(lista, janela, display, itemSelecionado, adminPerms=False):
     # Frame principal onde a lista será exibida
@@ -61,7 +51,14 @@ def listarItens(lista, janela, display, itemSelecionado, adminPerms=False):
         frame = Frame(frameItens, borderwidth=1, highlightbackground="white", 
                       highlightthickness=2, background="#3c3d61")
         frame.pack(fill=X, padx=10, pady=10)
-      
+
+        # Limitando a quantidade mínima de amostras e configurando a indisponibilidade
+        if item.estoque < 0:
+            item.estoque = 0
+        
+        if item.estoque == 0:
+            item.disponib = False
+
         # Título do item
         titulo = Label(frame, text=item.titulo, fg="white", bg="#3c3d61", font=("Arial", 18, "bold"))
         titulo.pack(padx=5, pady=1, anchor="w")
@@ -71,46 +68,31 @@ def listarItens(lista, janela, display, itemSelecionado, adminPerms=False):
         subtitulo = Label(frame, text=textoSubtitulo, fg="white", bg="#3c3d61", font=("Arial", 12))
         subtitulo.pack(padx=5, pady=2, anchor="w")
 
+        # Verificando a disponibilidade
+        if item.disponib:
+            iconeDisp = "disponibilidadeTrue.png"
+            textDisp = "Disponível"
+            corDisp = "lime"
+        else:
+            iconeDisp = "disponibilidadeFalse.png"
+            textDisp = "Indisponível"
+            corDisp = "red"
 
         # Imagem de disponibilidade
-        status = PhotoImage(file=f"Arquivos/Imagens/{item.iconeDisp}")
+        status = PhotoImage(file=f"Arquivos/Imagens/{iconeDisp}")
         imagem = Label(frame, image=status, highlightthickness=0, background="#3c3d61")
         imagem.image = status
         imagem.pack(padx=3, pady=1, side="left")
 
         # Texto de disponibilidade
-        textoimagem = Label(frame, text=item.textDisp, fg=item.corDisp, bg="#3c3d61", font=("Arial", 10, "bold"))
+        textoimagem = Label(frame, text=textDisp, fg=corDisp, bg="#3c3d61", font=("Arial", 10, "bold"))
         textoimagem.pack(padx=3, pady=1, side="left")
 
-        # Frame para os botões
-        frameBotoes = Frame(frame, background="#3c3d61")
-        frameBotoes.pack(padx=3, pady=3, anchor="e")
-
-        # Função para atualizar itemSelecionado antes de mostrar o item
-        def atualizarEVer(item):
-            itemSelecionado = item  
-            item.infoItem(display, itemSelecionado)  
-
-        # Botão "Ver item"
-        botaoVer = Button(frameBotoes, text="Ver item", borderwidth=1, highlightbackground="white",
-                        highlightthickness=2, background="#1b1b33", foreground="white",
-                        font=("Arial", 10, "bold"),
-                        command=lambda i=item: atualizarEVer(i))
-        botaoVer.grid(row=0, column=0, padx=2)
-
-        # Botão "+1"
-        botaoAdd = Button(frameBotoes, text="+1", borderwidth=1, highlightbackground="white", 
-                        highlightthickness=2, background="#1b1b33", foreground="white",
-                        font=("Arial", 10, "bold"), 
-                        command=lambda i=item: [usuarioLogado.adicionarEstoque(i, lista), atualizarEVer(i)])
-        botaoAdd.grid(row=0, column=1, padx=2)
-
-        # Botão "-1"
-        botaoRem = Button(frameBotoes, text="-1", borderwidth=1, highlightbackground="white", 
-                        highlightthickness=2, background="#1b1b33", foreground="white",
-                        font=("Arial", 10, "bold"), 
-                        command=lambda i=item: [usuarioLogado.removerEstoque(i, lista), atualizarEVer(i)])
-        botaoRem.grid(row=0, column=2, padx=2)
+        # Botão para ver o item selecionado
+        botaoVer = Button(frame, text="Ver item", borderwidth=1, highlightbackground="white",
+                          highlightthickness=2, background="#1b1b33", foreground="white",
+                          font=("Arial", 10, "bold"), command=lambda item=item: item.infoItem(display,itemSelecionado))
+        botaoVer.pack(padx=3, pady=3, anchor="e")
 
     listaShow.update_idletasks()
 
