@@ -3,17 +3,19 @@ from PIL import Image, ImageTk
 from lib import *
 from Classes.classFilme import Filme
 from Classes.classJogo import Jogo
+import subprocess
 
 # Verificando se o usuário é um admininstrador
 usuarioLogado = lerArquivo("Arquivos/Informações/usuarioLogado")[0]
 if type(usuarioLogado) == "<class 'Classes.classAdmin.Admin'>":
     adminPerms = True
+    pfp = "Arquivos/Imagens/iconAdmin.png"
 else:
     adminPerms = False
+    pfp = "Arquivos/Imagens/iconCliente.png"
 
 # Lendo o arquivo que contém os itens do catálogo
 global listaItens
-adicionarAoArquivo(listaItens,"itensCatalogo")
 listaItens = lerArquivo("Arquivos/Informações/itensCatalogo")
 
 # Interface do projeto
@@ -30,6 +32,15 @@ itemSelecionado = ""
 
 display = Frame(janela, borderwidth=1, highlightbackground="white", highlightthickness=2, background="#3c3d61")
 display.place(x=10,y=50,width=395,height=540)
+
+usuarioFrame = Frame(janela,background="#1b1b33",width=500,height=200)
+usuarioFrame.place(x=10,y=3)
+usuarioImagem = PhotoImage(file=pfp)
+usuarioImagemLabel = Button(usuarioFrame,image=usuarioImagem)
+usuarioImagemLabel.image = usuarioImagem
+usuarioImagemLabel.pack(side=LEFT)
+usuarioNome = Label(usuarioFrame,text=usuarioLogado.username,font=("Arial",14,"bold"),foreground="white",background="#1b1b33")
+usuarioNome.pack(side=RIGHT,padx=5)
 
 if itemSelecionado == "":
     displayTexto = Label(display, text="Seja bem-vindo à \nLocadora Caribe!!", 

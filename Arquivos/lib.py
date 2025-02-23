@@ -87,3 +87,7 @@ def listarItens(lista, janela, display, itemSelecionado, adminPerms=False):
         botaoVer.pack(padx=3, pady=3, anchor="e")
 
     listaShow.update_idletasks()
+
+# Ver perfil
+def verPerfil(janela):
+    janela = 
