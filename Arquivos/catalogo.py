@@ -63,7 +63,7 @@ listaItens = lerArquivo("Arquivos/Informações/itensCatalogo")
 
 # Interface do projeto
 janela = Tk()
-janela.geometry("940x560")
+janela.geometry("940x600")
 janela.title(f"Locadora Caribe - {usuarioLogado.username}")
 janela["bg"] = "#1b1b33"
 janela.resizable(False, False)
@@ -74,7 +74,7 @@ global itemSelecionado
 itemSelecionado = ""
 
 display = Frame(janela, borderwidth=1, highlightbackground="white", highlightthickness=2, background="#3c3d61")
-display.place(x=10,y=10,width=395,height=540)
+display.place(x=10,y=50,width=395,height=540)
 
 if itemSelecionado == "":
     displayTexto = Label(display, text="Seja bem-vindo à \nLocadora Caribe!!", 

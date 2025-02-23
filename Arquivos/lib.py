@@ -24,7 +24,7 @@ def lerArquivo(nomeArquivo):
 def listarItens(lista, janela, display, itemSelecionado):
     # Frame principal onde a lista será exibida
     frameLista = Frame(janela, width=500, height=197, background="#3c3d61")
-    frameLista.place(x=415, y=10)
+    frameLista.place(x=415, y=50)
 
     # Canvas para exibir os itens
     listaShow = Canvas(frameLista, background="#3c3d61",width=500,height=536)
