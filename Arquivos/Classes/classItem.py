@@ -2,7 +2,7 @@ from tkinter import *
 from PIL import Image, ImageTk
 
 class Item:
-    def __init__(self,titulo,ano,tipo,disponib=True,idNum=0,descricao="Descrição não definida"):
+    def _init_(self,titulo,ano,tipo,disponib=True,idNum=0,descricao="Descrição não definida"):
         self._id = idNum
         self.ano = ano
         self.titulo = titulo
@@ -60,3 +60,8 @@ class Item:
         sinopse = Label(display, text=f"Descrição: {item.descricao}", font=("Arial", 12),
                         background="#3c3d61", foreground="white", wraplength=300, justify="left")
         sinopse.place(x=10,y=270)
+
+        # Botão para alugar o item
+        botaoAlugar = Button(display, text="Alugar", borderwidth=1, highlightbackground="white",
+                            highlightthickness=2, background="#1b1b33", foreground="white",
+                            font=("Arial", 10, "bold"), command=lambda: item.alugarItem(display))
