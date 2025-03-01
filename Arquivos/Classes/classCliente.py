@@ -10,8 +10,11 @@ class Cliente(Usuário):
     
     def alocar(self, alocacao):
         self.listaAlocacoes.append(alocacao)
+        adicionarAoArquivo([self],"usuarioLogado")
 
     def desalocar(self, alocacao):
         self.listaAlocacoes.remove(alocacao)
+        adicionarAoArquivo([self],"usuarioLogado")
+
 
 

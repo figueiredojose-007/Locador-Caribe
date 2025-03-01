@@ -53,10 +53,40 @@ class Item:
                         background="#3c3d61", foreground="white", justify="left")
         estoque.pack(pady=1, anchor="w")
         
-        disponibilidade = Label(display, text=f"Disponível: {item.disponib}", font=("Arial", 12),
+        if item.disponib:
+            a = "✅"
+        else:
+            a = "❎"
+        disponibilidade = Label(display, text=f"Disponível: {a}", font=("Arial", 12),
                         background="#3c3d61", foreground="white", justify="left")
         disponibilidade.pack(pady=1, anchor="w")
         
+        if item.tipo == "Jogo":
+            desenvolvedor = Label(display, text=f"Desenvolvedor: {item.desenvolvedora}", font=("Arial", 12),
+                                background="#3c3d61", foreground="white", justify="left", wraplength=230)
+            desenvolvedor.pack(pady=1, anchor="w")
+
+            plataforma = Label(display, text=f"Plataforma: {item.plataforma}", font=("Arial", 12),
+                            background="#3c3d61", foreground="white", justify="left")
+            plataforma.pack(pady=1, anchor="w")
+
+        elif item.tipo == "Filme":
+            if item.versao3d:
+                b = "✅"
+            else:
+                b = "❎"
+            versao3d = Label(display, text=f"Versão 3D: {b}", font=("Arial", 12),
+                            background="#3c3d61", foreground="white", justify="left")
+            versao3d.pack(pady=1, anchor="w")
+
+            diretor = Label(display, text=f"Diretor: {item.diretor}", font=("Arial", 12),
+                            background="#3c3d61", foreground="white", justify="left")
+            diretor.pack(pady=1, anchor="w")
+
+        else:
+            pass
+        
         sinopse = Label(display, text=f"Descrição: {item.descricao}", font=("Arial", 12),
                         background="#3c3d61", foreground="white", wraplength=300, justify="left")
-        sinopse.place(x=10,y=270)
+        sinopse.place(x=10,y=300)
+

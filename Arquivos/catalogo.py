@@ -57,7 +57,7 @@ if itemSelecionado == "":
         text="A Locadora Caribe é um projeto desenvolvido por Caio Enzo Bessa de Oliveira e José Fernandes Figueirêdo Filho, sob a orientação do professor Ciro Daniel Gurgel de Moura, no Instituto Federal do Rio Grande do Norte (IFRN). Criado para simular a experiência de uma locadora moderna, permitindo o aluguel de jogos e filmes por meio de uma interface intuitiva e prática.\n\nSelecione um item para ver suas informações.",
         font=("Arial", 12), background="#3c3d61", foreground="white", 
         wraplength=370, justify="center") 
-    displayTextoMenor.pack(pady=5,padx=10,side="bottom",) 
+    displayTextoMenor.pack(pady=5,padx=10,side="bottom") 
 
 janela.after(500, listarItens(listaItens, janela,display,itemSelecionado, adminPerms))
 janela.mainloop()

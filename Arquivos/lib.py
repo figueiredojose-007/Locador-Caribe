@@ -94,6 +94,7 @@ def listarItens(lista, janela, display, itemSelecionado, adminPerms=False):
                           font=("Arial", 10, "bold"), command=lambda item=item: item.infoItem(display,itemSelecionado))
         botaoVer.pack(padx=3, pady=3, anchor="e")
 
+
     listaShow.update_idletasks()
 
 # Ver perfil

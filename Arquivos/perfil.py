@@ -37,9 +37,7 @@ tipoUsuario.place(x=120,y=50)
 if adminPerms == False:
     listaLocacoes = usuarioLogado.listaAlocacoes
     listaFinal = "Itens alocados:\n"
-    for item in listaLocacoes:
-        listaFinal = listaFinal + f"{listaLocacoes.index[item.titulo]}, "
-
+    listaFinal = ", ".join(item.titulo for item in listaLocacoes)
     listaUsuario = Label(framePrincipal,text=listaFinal,font=("Arial", 14),background="#3c3d61", foreground="white",wraplength=280,justify="left")
     listaUsuario.place(x=120,y=75)
 
