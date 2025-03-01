@@ -1,4 +1,4 @@
-from classUsuario import Usuário
+from Classes.classUsuario import Usuário
 from lib import *
 
 class Admin(Usuário):
@@ -7,3 +7,4 @@ class Admin(Usuário):
         self._id = 100 + len(lerArquivo("itensUsuarios"))
         self.username = username
         self.senha = senha
+        self.listaAlocacoes = "Admins não alocam itens."

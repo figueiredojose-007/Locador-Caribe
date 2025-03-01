@@ -4,6 +4,7 @@ from tkinter import messagebox
 from lib import *
 import os
 from Classes.classCliente import Cliente
+from Classes.classAdmin import Admin
 import subprocess
 
 # Cadastrando um usuário
