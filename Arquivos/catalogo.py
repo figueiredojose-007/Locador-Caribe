@@ -59,5 +59,5 @@ if itemSelecionado == "":
         wraplength=370, justify="center") 
     displayTextoMenor.pack(pady=5,padx=10,side="bottom") 
 
-janela.after(500, listarItens(listaItens, janela,display,itemSelecionado, adminPerms))
+janela.after(500, listarItens(listaItens, janela,display,itemSelecionado, adminPerms, usuarioLogado))
 janela.mainloop()

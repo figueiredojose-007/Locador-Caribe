@@ -1,5 +1,6 @@
 from tkinter import *
 from PIL import Image, ImageTk
+from lib import *
 
 class Item:
     def __init__(self,titulo,ano,tipo,disponib=True,idNum=0,descricao="Descrição não definida"):
@@ -16,7 +17,7 @@ class Item:
     def getId(self):
         return self._id
     
-    def infoItem(self, display, intemSelecionado):
+    def infoItem(self, display, intemSelecionado, adminPerms, usuarioLogado, janela):
         global itemSelecionado
         itemSelecionado = self
         item = self
@@ -90,3 +91,16 @@ class Item:
                         background="#3c3d61", foreground="white", wraplength=300, justify="left")
         sinopse.place(x=10,y=300)
 
+        # Botões para admin
+        if adminPerms == True:
+            botaoAdd = Button(display, text="+1 Unidade",borderwidth=1, highlightbackground="white",
+                          highlightthickness=2, background="#1b1b33", foreground="white",
+                          font=("Arial", 10, "bold"), command=lambda item=item: [usuarioLogado.adicionarCatalogo(item), self.infoItem(display, intemSelecionado, adminPerms, usuarioLogado, janela)])
+            botaoAdd.pack(padx=5, pady=5, anchor="s", side="bottom")
+
+            botaoRem = Button(display, text="-1 Unidade",borderwidth=1, highlightbackground="white",
+                          highlightthickness=2, background="#1b1b33", foreground="white",
+                          font=("Arial", 10, "bold"), command=lambda item=item: [usuarioLogado.removerCatalogo(item), self.infoItem(display, intemSelecionado, adminPerms, usuarioLogado, janela)])
+            botaoRem.pack(padx=5, pady=5, anchor="s", side="bottom")
+
+        listarItens(lerArquivo("Arquivos/Informações/itensCatalogo"), janela,display,itemSelecionado, adminPerms, usuarioLogado)

@@ -7,6 +7,8 @@ from Classes.classCliente import Cliente
 from Classes.classAdmin import Admin
 import subprocess
 
+# adicionarAoArquivo([Admin("admin","admin")],"itensUsuarios")
+
 # Cadastrando um usuário
 def cadastrarUsuario(usuario, senha):
     if not usuario or not senha:
