@@ -22,6 +22,7 @@ def lerArquivo(nomeArquivo):
         arquivo.close()
         return listaFinal
         
+# Kitar da conta atual e liberar o espaço        
 def logoff(janela, usuarioLogado):
     messagebox.showinfo("Locadora Caribe", "Desconectado com sucesso.")
     listaUsuarios = lerArquivo("Arquivos/Informações/itensUsuarios")
@@ -34,6 +35,11 @@ def logoff(janela, usuarioLogado):
     subprocess.run(["python3", "Arquivos/login.py"])
 
 def listarItens(lista, janela, display, itemSelecionado, adminPerms=False, usuarioLogado=""):
+    # Verifica se já existe uma scrollbar e remove antes de criar uma nova
+    if hasattr(janela, "scrollbar") and janela.scrollbar.winfo_exists():
+        janela.scrollbar.destroy()
+
+    # Frame principal onde a lista será exibida
     frameLista = Frame(janela, width=500, height=197, background="#3c3d61")
     frameLista.place(x=415, y=50)
 
@@ -41,21 +47,14 @@ def listarItens(lista, janela, display, itemSelecionado, adminPerms=False, usuar
     listaShow = Canvas(frameLista, background="#3c3d61", width=500, height=536)
     listaShow.pack(side=LEFT, fill=BOTH, expand=True)
 
-    # Barra de rolagem
-    if not hasattr(janela, "scrollbar") or not janela.scrollbar.winfo_exists():
-        janela.scrollbar = Scrollbar(janela, orient="vertical", command=listaShow.yview)
-        janela.scrollbar.pack(side=RIGHT, fill=Y)
-        listaShow.configure(yscrollcommand=janela.scrollbar.set)
-    else:
-        listaShow.configure(yscrollcommand=janela.scrollbar.set)
+    # Criar e armazenar a scrollbar na janela para evitar múltiplas criações
+    janela.scrollbar = Scrollbar(janela, orient="vertical", command=listaShow.yview)
+    janela.scrollbar.pack(side=RIGHT, fill=Y)
+    listaShow.configure(yscrollcommand=janela.scrollbar.set)
 
     # Frame interno que conterá os itens
     frameItens = Frame(listaShow, background="#3c3d61")
     listaShow.create_window((0, 0), window=frameItens, anchor="nw", width=500)
-
-    # Limpar os itens antigos antes de listar os novos
-    for widget in frameItens.winfo_children():
-        widget.destroy()
 
     # Atualiza o tamanho do canvas conforme os itens são adicionados
     def ajustarScroll(event):
@@ -110,6 +109,9 @@ def listarItens(lista, janela, display, itemSelecionado, adminPerms=False, usuar
         botaoVer.pack(padx=3, pady=3, anchor="e")
 
     listaShow.update_idletasks()
+
+
+
 
 
 # Ver perfil

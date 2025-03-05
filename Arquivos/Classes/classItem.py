@@ -103,4 +103,15 @@ class Item:
                           font=("Arial", 10, "bold"), command=lambda item=item: [usuarioLogado.removerCatalogo(item), self.infoItem(display, intemSelecionado, adminPerms, usuarioLogado, janela)])
             botaoRem.pack(padx=5, pady=5, anchor="s", side="bottom")
 
+        else:
+            botaoAloc = Button(display, text="Alocar",borderwidth=1, highlightbackground="white",
+                          highlightthickness=2, background="#1b1b33", foreground="white",
+                          font=("Arial", 10, "bold"), command=lambda item=item: [usuarioLogado.alocar(item), self.infoItem(display, intemSelecionado, adminPerms, usuarioLogado, janela)])
+            botaoAloc.pack(padx=5, pady=5, anchor="s", side="bottom")
+
+            botaoDesaloc = Button(display, text="Desalocar",borderwidth=1, highlightbackground="white",
+                          highlightthickness=2, background="#1b1b33", foreground="white",
+                          font=("Arial", 10, "bold"), command=lambda item=item: [usuarioLogado.desalocar(item), self.infoItem(display, intemSelecionado, adminPerms, usuarioLogado, janela)])
+            botaoDesaloc.pack(padx=5, pady=5, anchor="s", side="bottom")
+
         listarItens(lerArquivo("Arquivos/Informações/itensCatalogo"), janela,display,itemSelecionado, adminPerms, usuarioLogado)
