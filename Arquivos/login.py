@@ -7,6 +7,7 @@ from Classes.classCliente import Cliente
 from Classes.classAdmin import Admin
 import subprocess
 
+# Remover a tag do comentário abaixo caso necessário. Limpa a lista de usuários cadastrados e cadastra um admin
 # adicionarAoArquivo([Admin("admin","admin")],"itensUsuarios")
 
 # Cadastrando um usuário
@@ -14,8 +15,9 @@ def cadastrarUsuario(usuario, senha):
     if not usuario or not senha:
         messagebox.showwarning("Locadora Caribe", "Usuário e senha não podem estar vazios.")
         return
-    listaUsuarios = lerArquivo("itensUsuarios")
+    listaUsuarios = lerArquivo("Arquivos/Informações/itensUsuarios")
     listaUsuarios.append(Cliente(usuario.strip(), senha.strip()))
+    for i in listaUsuarios: print(i)
     adicionarAoArquivo(listaUsuarios, "itensUsuarios")
     messagebox.showinfo("Locadora Caribe", "Usuário cadastrado com sucesso.")
 

@@ -1,5 +1,6 @@
 from tkinter import *
 from PIL import Image, ImageTk
+from tkinter import messagebox
 import pickle
 import os
 import subprocess
@@ -21,6 +22,17 @@ def lerArquivo(nomeArquivo):
         arquivo.close()
         return listaFinal
         
+def logoff(janela, usuarioLogado):
+    messagebox.showinfo("Locadora Caribe", "Desconectado com sucesso.")
+    listaUsuarios = lerArquivo("Arquivos/Informações/itensUsuarios")
+    for i, usuario in enumerate(listaUsuarios):
+        if usuario.getId() == usuarioLogado.getId():
+            listaUsuarios[i] = usuarioLogado  
+    adicionarAoArquivo(listaUsuarios, "itensUsuarios")
+    adicionarAoArquivo([], "usuarioLogado")
+    janela.destroy()
+    subprocess.run(["python3", "Arquivos/login.py"])
+
 def listarItens(lista, janela, display, itemSelecionado, adminPerms=False, usuarioLogado=""):
     frameLista = Frame(janela, width=500, height=197, background="#3c3d61")
     frameLista.place(x=415, y=50)

@@ -41,12 +41,12 @@ if adminPerms == False:
     listaUsuario = Label(framePrincipal,text=listaFinal,font=("Arial", 14),background="#3c3d61", foreground="white",wraplength=280,justify="left")
     listaUsuario.place(x=120,y=75)
 
-botaoSair = Button(framePrincipal, text="Logoff", borderwidth=1, highlightbackground="white",
-                          highlightthickness=2, background="#1b1b33", foreground="white", width=12,
-                          font=("Arial", 10, "bold"), command=lambda: [messagebox.showinfo("Locadora Caribe","Desconectado com sucesso."), 
-                                                                       janela.destroy(),
-                                                                        adicionarAoArquivo([],"usuarioLogado.txt"),
-                                                                        subprocess.run(["python3","Arquivos/login.py"])])
+botaoSair = Button(
+    framePrincipal, text="Logoff", borderwidth=1, highlightbackground="white",
+    highlightthickness=2, background="#1b1b33", foreground="white", width=12,
+    font=("Arial", 10, "bold"), command=lambda: logoff(janela, usuarioLogado)
+)
+
 botaoSair.pack(anchor="w",padx=10)
 botaoVoltar = Button(framePrincipal, text="Voltar", borderwidth=1, highlightbackground="white",
                           highlightthickness=2, background="#1b1b33", foreground="white", width=12,
